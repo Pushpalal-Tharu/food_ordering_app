@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/home/food_page_body.dart';
+import 'package:food_ordering_app/pages/home/food_page_body.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:food_ordering_app/utils/dimensions.dart';
 import 'package:food_ordering_app/widgets/big_text.dart';
