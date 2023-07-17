@@ -4,7 +4,7 @@ import 'package:food_ordering_app/utils/dimensions.dart';
 import 'package:food_ordering_app/widgets/app_column.dart';
 import 'package:food_ordering_app/widgets/app_icon.dart';
 import 'package:food_ordering_app/widgets/expandable_text_widget.dart';
-import '../../../widgets/big_text.dart';
+import '../../widgets/big_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({super.key});
