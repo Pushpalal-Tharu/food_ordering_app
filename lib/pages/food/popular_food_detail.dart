@@ -1,16 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/controllers/popular_product_controller.dart';
+import 'package:food_ordering_app/utils/app_constants.dart';
+import 'package:get/get.dart';
+
+import 'package:food_ordering_app/pages/home/main_food_page.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:food_ordering_app/utils/dimensions.dart';
 import 'package:food_ordering_app/widgets/app_column.dart';
 import 'package:food_ordering_app/widgets/app_icon.dart';
 import 'package:food_ordering_app/widgets/expandable_text_widget.dart';
+
 import '../../widgets/big_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
+  int pageId;
+  PopularFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(children: [
@@ -23,7 +36,9 @@ class PopularFoodDetail extends StatelessWidget {
             height: Dimensions.popularFoodImgSize,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/image/food0.png"),
+                image: NetworkImage(AppConstants.BASE_URL +
+                    AppConstants.UPLOAD_URL +
+                    product.img!),
                 fit: BoxFit.cover,
               ),
             ),
@@ -37,7 +52,11 @@ class PopularFoodDetail extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AppIcon(icon: Icons.arrow_back_ios),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(() => MainFoodPage());
+                  },
+                  child: AppIcon(icon: Icons.arrow_back_ios)),
               AppIcon(icon: Icons.shopping_cart_outlined),
             ],
           ),
@@ -65,7 +84,7 @@ class PopularFoodDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppColumn(
-                    text: "Chinese Side",
+                    text: product.name!,
                   ),
                   SizedBox(height: Dimensions.height20),
                   BigText(
@@ -76,8 +95,7 @@ class PopularFoodDetail extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                        text:
-                            "With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance. With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance. With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance. With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.",
+                        text: product.description!,
                       ),
                     ),
                   )
@@ -138,7 +156,7 @@ class PopularFoodDetail extends StatelessWidget {
                   color: AppColors.mainColor,
                   borderRadius: BorderRadius.circular(Dimensions.radius20)),
               child: BigText(
-                text: "\$10 | Add to cart",
+                text: "\$ ${product.price!} | Add to cart",
                 color: Colors.white,
               ),
             )

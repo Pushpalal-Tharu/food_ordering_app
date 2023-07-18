@@ -1,4 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:food_ordering_app/controllers/recommended_product_controller.dart';
+import 'package:food_ordering_app/routes/route_helper.dart';
+import 'package:food_ordering_app/utils/app_constants.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:food_ordering_app/utils/dimensions.dart';
 import 'package:food_ordering_app/widgets/app_icon.dart';
@@ -6,20 +12,31 @@ import 'package:food_ordering_app/widgets/big_text.dart';
 import 'package:food_ordering_app/widgets/expandable_text_widget.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  final int pageId;
+  const RecommendedFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 75,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.add_shopping_cart_outlined)
               ],
             ),
@@ -32,7 +49,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                         topRight: Radius.circular(Dimensions.radius20))),
                 child: Center(
                     child: BigText(
-                  text: "Chinese Side",
+                  text: product.name!,
                   size: Dimensions.font26,
                 )),
                 width: double.maxFinite,
@@ -44,8 +61,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/food0.png",
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -59,9 +76,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     left: Dimensions.width20,
                     right: Dimensions.width20,
                   ),
-                  child: ExpandableTextWidget(
-                      text:
-                          "With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance. With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance. With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance. With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance.With a long history, unique features, numerous styles, and exquisite cooking, Chinese cuisine is one of the important constituent parts of Chinese culture. Chinese traditional dishes are famous for their color, aroma, taste, meanings, and appearance."),
+                  child: ExpandableTextWidget(text: product.description!),
                 ),
               ],
             ),
@@ -88,7 +103,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   backgroundColor: AppColors.mainColor,
                 ),
                 BigText(
-                  text: "\$12.88 " + " X " + " 0 ",
+                  text: "\$ ${product.price!} " + " X " + " 0 ",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
@@ -142,7 +157,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       color: AppColors.mainColor,
                       borderRadius: BorderRadius.circular(Dimensions.radius20)),
                   child: BigText(
-                    text: "\$10 | Add to cart",
+                    text: "\$ ${product.price!} | Add to cart",
                     color: Colors.white,
                   ),
                 )
