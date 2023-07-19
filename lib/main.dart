@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/controllers/cart_controller.dart';
 import 'package:food_ordering_app/controllers/popular_product_controller.dart';
 import 'package:food_ordering_app/controllers/recommended_product_controller.dart';
 import 'package:food_ordering_app/pages/home/main_food_page.dart';
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
     Get.find<RecommendedProductController>().getRecommendedProductList();
-    Get.find<CartController>().addItem;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainFoodPage(),
+      // home: MainFoodPage(),
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
     );

@@ -2,6 +2,7 @@ import 'package:food_ordering_app/controllers/cart_controller.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:get/get.dart';
 import '../data/repository/popular_product_repo.dart';
+import '../models/cart_model.dart';
 import '../models/products_model.dart';
 
 class PopularProductController extends GetxController {
@@ -42,6 +43,9 @@ class PopularProductController extends GetxController {
     update();
   }
 
+  // _inCartItems =2;
+  // _quantity = 0;
+  // _quantity = -1;
   int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
       Get.snackbar(
@@ -49,6 +53,10 @@ class PopularProductController extends GetxController {
         "You can't reduce more !",
         backgroundColor: AppColors.mainColor,
       );
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
@@ -86,5 +94,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
