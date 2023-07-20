@@ -245,21 +245,24 @@ class CartPage extends StatelessWidget {
                   child: Row(
                     children: [
                       BigText(
-                          text: "\$ " + cartController.totalAmount.toString()),
+                          text: "\Rs " + cartController.totalAmount.toString()),
                     ],
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height20,
-                      bottom: Dimensions.height20 - 2,
-                      left: Dimensions.width20,
-                      right: Dimensions.width20),
-                  decoration: BoxDecoration(
-                      color: AppColors.mainColor,
-                      borderRadius: BorderRadius.circular(Dimensions.radius20)),
-                  child: GestureDetector(
-                    onTap: () {},
+                GestureDetector(
+                  onTap: () {
+                    cartController.addToHistory();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        top: Dimensions.height20,
+                        bottom: Dimensions.height20 - 2,
+                        left: Dimensions.width20,
+                        right: Dimensions.width20),
+                    decoration: BoxDecoration(
+                        color: AppColors.mainColor,
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius20)),
                     child: BigText(
                       text: "Check Out",
                       color: Colors.white,

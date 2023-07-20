@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/controllers/cart_controller.dart';
 import 'package:food_ordering_app/controllers/popular_product_controller.dart';
-import 'package:food_ordering_app/controllers/recommended_product_controller.dart';
-import 'package:food_ordering_app/pages/home/main_food_page.dart';
 import 'package:food_ordering_app/routes/route_helper.dart';
 import 'package:get/get.dart';
+import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
 Future<void> main() async {
@@ -17,18 +17,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Food app',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // home: MainFoodPage(),
-      initialRoute: RouteHelper.initial,
-      getPages: RouteHelper.routes,
+    Get.find<CartController>().getCartData();
+    return GetBuilder<PopularProductController>(
+      builder: (_) {
+        return GetBuilder<RecommendedProductController>(
+          builder: (_) {
+            return GetBuilder<CartController>(builder: (_) {
+              return GetMaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Food app',
+                theme: ThemeData(
+                  colorScheme:
+                      ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                  useMaterial3: true,
+                ),
+                // home: SplashScreen(),
+                initialRoute: RouteHelper.getSplashPage(),
+                getPages: RouteHelper.routes,
+              );
+            });
+          },
+        );
+      },
     );
   }
 }

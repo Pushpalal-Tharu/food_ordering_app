@@ -10,4 +10,6 @@ class AppConstants {
   static const String UPLOAD_URL = "/uploads/";
 
   static const String TOKEN = "FoodToken";
+  static const String CART_LIST = "Cart-litst";
+  static const String CART_HISTORY_LIST = "cart-history-list";
 }
