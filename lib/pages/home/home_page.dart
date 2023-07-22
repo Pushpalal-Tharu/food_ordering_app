@@ -4,6 +4,9 @@ import 'package:food_ordering_app/pages/home/main_food_page.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
+import '../cart/cart_history.dart';
+import 'archieve_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -12,27 +15,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 1;
+  // int _selectedIndex = 1;
   late PersistentTabController _controller;
-  List pages = [
-    MainFoodPage(),
-    Container(child: Center(child: Text("Next page"))),
-    Container(child: Center(child: Text("Next next page"))),
-    Container(child: Center(child: Text("Next next next page"))),
-  ];
+  // List pages = [
+  //   MainFoodPage(),
+  //   Container(child: Center(child: Text("Next page"))),
+  //   Container(child: Center(child: Text("Next next page"))),
+  //   Container(child: Center(child: Text("Next next next page"))),
+  // ];
 
-  void onTapNav(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  // void onTapNav(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      Container(child: Center(child: Text("Next page"))),
-      Container(child: Center(child: Text("Next next page"))),
-      Container(child: Center(child: Text("Next next next page"))),
+      ArchievePage(),
+      CartHistory(),
+      MainFoodPage(),
     ];
   }
 

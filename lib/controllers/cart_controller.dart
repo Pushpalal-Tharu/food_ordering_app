@@ -128,4 +128,9 @@ class CartController extends GetxController {
     _items = {};
     update();
   }
+
+  List<CartModel> getCartHistoryList() {
+    print(cartRepo.cartHistory);
+    return cartRepo.getCartHistoryList();
+  }
 }
