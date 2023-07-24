@@ -16,7 +16,7 @@ class PopularProductController extends GetxController {
   late CartController _cart;
 
   bool _isLoaded = false;
-  bool get isLoaded => _isLoaded;
+  bool get isLoaded => _isLoaded; 
 
   int _quantity = 0;
   int get quantity => _quantity;
