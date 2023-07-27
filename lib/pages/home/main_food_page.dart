@@ -4,6 +4,10 @@ import 'package:food_ordering_app/utils/colors.dart';
 import 'package:food_ordering_app/utils/dimensions.dart';
 import 'package:food_ordering_app/widgets/big_text.dart';
 import 'package:food_ordering_app/widgets/small_text.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -13,10 +17,16 @@ class MainFoodPage extends StatefulWidget {
 }
 
 class _MainFoodPageState extends State<MainFoodPage> {
+  Future<void> _loadResource() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return RefreshIndicator(
+      onRefresh: _loadResource,
+      child: Column(
         children: [
           //showing the header
           Container(
