@@ -6,6 +6,7 @@ import 'package:food_ordering_app/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'helper/dependencies.dart' as dep;
+import 'pages/auth/sign_in_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
                       ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                   useMaterial3: true,
                 ),
-                home: SignUpPage(),
+                home: SignInPage(),
                 // home: SplashScreen(),
                 // initialRoute: RouteHelper.getSplashPage(),
                 // getPages: RouteHelper.routes,
