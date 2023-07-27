@@ -15,6 +15,21 @@ class SignUpPage extends StatelessWidget {
     var nameController = TextEditingController();
     var phoneController = TextEditingController();
     var signUpImages = ["g.png", "f.png", "t.png"];
+    void _registration() {
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (name.isEmpty) {
+      } else if (phone.isEmpty) {
+      } else if (email.isEmpty) {
+      } else if (!GetUtils.isEmail(email)) {
+      } else if (password.isEmpty) {
+      } else if (password.length < 6) {
+      } else {}
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -71,18 +86,23 @@ class SignUpPage extends StatelessWidget {
             SizedBox(
               height: Dimensions.height20 + Dimensions.height20,
             ),
-            Container(
-              width: Dimensions.screenWidth / 2,
-              height: Dimensions.screenHeight / 13,
-              decoration: BoxDecoration(
-                color: AppColors.mainColor,
-                borderRadius: BorderRadius.circular(Dimensions.radius30),
-              ),
-              child: Center(
-                child: BigText(
-                  text: "Sign up",
-                  size: Dimensions.font20 + Dimensions.font20 / 2,
-                  color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                _registration();
+              },
+              child: Container(
+                width: Dimensions.screenWidth / 2,
+                height: Dimensions.screenHeight / 13,
+                decoration: BoxDecoration(
+                  color: AppColors.mainColor,
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                ),
+                child: Center(
+                  child: BigText(
+                    text: "Sign up",
+                    size: Dimensions.font20 + Dimensions.font20 / 2,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
