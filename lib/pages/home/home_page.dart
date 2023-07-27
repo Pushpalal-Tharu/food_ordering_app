@@ -4,8 +4,8 @@ import 'package:food_ordering_app/pages/account/account_page.dart';
 import 'package:food_ordering_app/pages/home/main_food_page.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import '../auth/sign_up_page.dart';
 import '../cart/cart_history.dart';
-import 'archieve_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      ArchievePage(),
+      SignUpPage(),
       CartHistory(),
       AccountPage(),
     ];
