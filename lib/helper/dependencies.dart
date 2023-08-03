@@ -1,6 +1,8 @@
+import 'package:food_ordering_app/controllers/auth_controller.dart';
 import 'package:food_ordering_app/controllers/cart_controller.dart';
 import 'package:food_ordering_app/controllers/popular_product_controller.dart';
 import 'package:food_ordering_app/data/api/api_client.dart';
+import 'package:food_ordering_app/data/repository/auth_repo.dart';
 import 'package:food_ordering_app/data/repository/cart_repo.dart';
 import 'package:food_ordering_app/data/repository/popular_product_repo.dart';
 import 'package:food_ordering_app/utils/app_constants.dart';
@@ -21,6 +23,8 @@ Future<void> init() async {
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
+  Get.lazyPut(
+      () => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   //controllers
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
@@ -28,4 +32,5 @@ Future<void> init() async {
       () => RecommendedProductController(recommendedProductRepo: Get.find()));
 
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
+  Get.lazyPut(() => AuthController(authRepo: Get.find()));
 }

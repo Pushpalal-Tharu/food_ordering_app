@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/controllers/cart_controller.dart';
 import 'package:food_ordering_app/controllers/popular_product_controller.dart';
-import 'package:food_ordering_app/pages/auth/sign_up_page.dart';
 import 'package:food_ordering_app/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'controllers/recommended_product_controller.dart';
@@ -28,15 +27,15 @@ class MyApp extends StatelessWidget {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Food app',
-                theme: ThemeData(
-                  colorScheme:
-                      ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                  useMaterial3: true,
-                ),
-                home: SignInPage(),
+                // theme: ThemeData(
+                //   colorScheme:
+                //       ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                //   useMaterial3: true,
+                // ),
                 // home: SplashScreen(),
-                // initialRoute: RouteHelper.getSplashPage(),
-                // getPages: RouteHelper.routes,
+                // home: SignInPage(),
+                initialRoute: RouteHelper.getSplashPage(),
+                getPages: RouteHelper.routes,
               );
             });
           },
