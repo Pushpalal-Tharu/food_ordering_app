@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/base/no_data_page.dart';
 import 'package:food_ordering_app/controllers/cart_controller.dart';
@@ -10,7 +9,6 @@ import 'package:food_ordering_app/utils/dimensions.dart';
 import 'package:food_ordering_app/widgets/big_text.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../../utils/colors.dart';
 import '../../widgets/app_icon.dart';
 import '../../widgets/small_text.dart';

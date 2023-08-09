@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/controllers/auth_controller.dart';
+import 'package:food_ordering_app/controllers/cart_controller.dart';
+import 'package:food_ordering_app/routes/route_helper.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:food_ordering_app/utils/dimensions.dart';
 import 'package:food_ordering_app/widgets/account_widget.dart';
 import 'package:food_ordering_app/widgets/app_icon.dart';
 import 'package:food_ordering_app/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -105,7 +109,32 @@ class AccountPage extends StatelessWidget {
                         iconSize: Dimensions.height10 * 5 / 2,
                         size: Dimensions.height10 * 5,
                       ),
-                      bigText: BigText(text: "Pushpalal Tharu"),
+                      bigText: BigText(text: "Messages"),
+                    ),
+                    SizedBox(
+                      height: Dimensions.height20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clear();
+                          Get.find<CartController>().clearCartHistory();
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        } else {
+                          print("You logged out.");
+                        }
+                      },
+                      child: AccountWidget(
+                        appIcon: AppIcon(
+                          icon: Icons.logout,
+                          backgroundColor: AppColors.redAccent,
+                          iconColor: Colors.white,
+                          iconSize: Dimensions.height10 * 5 / 2,
+                          size: Dimensions.height10 * 5,
+                        ),
+                        bigText: BigText(text: "Logout"),
+                      ),
                     ),
                     SizedBox(
                       height: Dimensions.height20,
