@@ -2,11 +2,14 @@ class AppConstants {
   static const String APP_NAME = "Food App";
   static const int APP_VERSION = 1;
   // static const String BASE_URL = "http://mvs.bslmeiyu.com";
-  static const String BASE_URL = "http://192.168.0.101:8000";
+  static const String BASE_URL = "http://192.168.100.133:8000";
+  // static const String BASE_URL = "http://192.168.13.109:8000";
+  // static const String BASE_URL = "http://192.168.0.102:8000";
+
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String UPLOAD_URL = "/uploads/";
-  // auth end points
+  //user and auth end points
   static const String REGISTRATION_URI = "/api/v1/auth/register";
   static const String LOGIN_URI = "/api/v1/auth/login";
   static const String USER_INFO_URI = "/api/v1/customer/info";

@@ -42,7 +42,6 @@ class SignUpPage extends StatelessWidget {
       } else if (phone.isEmpty) {
         showCustomSnackBar("Type in your phone number", title: "Phone number");
       } else {
-        showCustomSnackBar("All went well", title: "Perfect");
         SignUpBody signUpBody = SignUpBody(
           name: name,
           phone: phone,
@@ -52,7 +51,7 @@ class SignUpPage extends StatelessWidget {
 
         authController.registeration(signUpBody).then((status) {
           if (status.isSuccess) {
-            Get.toNamed(RouteHelper.getInitial());
+            Get.offNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
           }
