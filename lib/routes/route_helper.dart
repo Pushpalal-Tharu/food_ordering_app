@@ -1,10 +1,16 @@
+import 'package:food_ordering_app/models/order_model.dart';
+import 'package:food_ordering_app/pages/address/pick_address_map.dart';
 import 'package:food_ordering_app/pages/auth/sign_in_page.dart';
 import 'package:food_ordering_app/pages/cart/cart_page.dart';
 import 'package:food_ordering_app/pages/food/popular_food_detail.dart';
 import 'package:food_ordering_app/pages/food/recommended_food_detail.dart';
 import 'package:food_ordering_app/pages/home/home_page.dart';
+import 'package:food_ordering_app/pages/payment/order_success_page.dart';
+import 'package:food_ordering_app/pages/payment/payment_page.dart';
 import 'package:food_ordering_app/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
+import '../pages/address/add_address_page.dart';
+import '../pages/payment/paypalHome.dart';
 
 class RouteHelper {
   static const String initial = "/";
@@ -13,6 +19,11 @@ class RouteHelper {
   static const String recommendedFood = "/recommended-food";
   static const String cartPage = "/cart-page";
   static const String signIn = "/sign-in";
+  static const String addAddress = "/add-address";
+  static const String pickAddressMap = "/pick-address";
+  static const String payment = "/payment";
+  static const String orderSuccess = "/order-successful";
+  static const String paypalHome = "/paypal-home";
 
   static String getInitial() => "$initial";
   static String getSplashPage() => "$splashPage";
@@ -22,10 +33,23 @@ class RouteHelper {
       "$recommendedFood?pageId=$pageId&page=$page";
   static String getCartPage() => "$cartPage";
   static String getSignInPage() => "$signIn";
+  static String getAddressPage() => "$addAddress";
+  static String getPickAddressPage() => "$pickAddressMap";
+  static String getPaymentPage(String id, int userID) =>
+      '$payment?id=$id&userID=$userID';
+  static String getOrderSuccessPage(String orderID, String status) =>
+      '$orderSuccess?id=$orderID&status=$status';
+  static String getPaypalHome() => '$paypalHome';
 
   static List<GetPage> routes = [
     GetPage(name: splashPage, page: () => SplashScreen()),
-    GetPage(name: initial, page: () => HomePage()),
+    GetPage(
+      name: initial,
+      page: () {
+        return HomePage();
+      },
+      transition: Transition.fade,
+    ),
     GetPage(
         name: signIn,
         page: () {
@@ -65,5 +89,39 @@ class RouteHelper {
       },
       transition: Transition.fadeIn,
     ),
+    GetPage(
+      name: addAddress,
+      page: () {
+        return AddressPage();
+      },
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+        name: pickAddressMap,
+        page: () {
+          PickAddressMap _pickAddress = Get.arguments;
+          return _pickAddress;
+        },
+        transition: Transition.fade),
+    GetPage(
+        name: payment,
+        page: () => PaymentPage(
+                orderModel: OrderModel(
+              id: int.parse(Get.parameters['id']!),
+              userId: int.parse(Get.parameters['userID']!),
+            ))),
+    GetPage(
+        name: orderSuccess,
+        page: () => OrderSuccessPage(
+              orderID: Get.parameters['id']!,
+              status: Get.parameters["status"].toString().contains("success")
+                  ? 1
+                  : 0,
+            )),
+    GetPage(
+        name: paypalHome,
+        page: () {
+          return paypalHomePage();
+        }),
   ];
 }
