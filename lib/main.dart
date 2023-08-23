@@ -39,10 +39,6 @@ class MyApp extends StatelessWidget {
                   useMaterial3: true,
                 ),
                 navigatorKey: navigatorKey,
-                home: OrderSuccessPage(
-                  orderID: '',
-                  status: 1,
-                ),
                 initialRoute: RouteHelper.getSplashPage(),
                 getPages: RouteHelper.routes,
               );

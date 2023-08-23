@@ -363,12 +363,13 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // "100002"
-
   void _callback(bool isSuccess, String message, String orderID) {
     if (isSuccess) {
+      Get.find<CartController>().clear();
+      Get.find<CartController>().removeCartSharedPreferences();
+      Get.find<CartController>().addToHistory();
       Get.offNamed(RouteHelper.getPaymentPage(
-          orderID, Get.find<UserController>().userModel!.id!));
+          orderID, Get.find<UserController>().userModel!.id));
     } else {
       showCustomSnackBar(message);
     }

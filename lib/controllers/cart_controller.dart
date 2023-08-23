@@ -118,7 +118,7 @@ class CartController extends GetxController {
     }
   }
 
-  void addToHistory() {
+  Future<void> addToHistory() async {
     cartRepo.addToCartHistoryList();
     clear();
   }
@@ -145,5 +145,9 @@ class CartController extends GetxController {
   void clearCartHistory() {
     cartRepo.clearCartHistory();
     update();
+  }
+
+  void removeCartSharedPreferences() {
+    cartRepo.removeCartSharedPreferences();
   }
 }
