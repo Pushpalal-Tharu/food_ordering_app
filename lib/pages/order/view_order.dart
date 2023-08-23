@@ -3,6 +3,7 @@ import 'package:food_ordering_app/controllers/order_controller.dart';
 import 'package:food_ordering_app/models/order_model.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:food_ordering_app/utils/dimensions.dart';
+import 'package:food_ordering_app/utils/sytles.dart';
 import 'package:get/get.dart';
 
 class ViewOrder extends StatelessWidget {
@@ -43,6 +44,9 @@ class ViewOrder extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Order ID:-",
+                                        style: robotoRegular.copyWith(
+                                          fontSize: Dimensions.font12,
+                                        ),
                                       ),
                                       Text(
                                         orderList[index].id.toString(),
@@ -50,8 +54,7 @@ class ViewOrder extends StatelessWidget {
                                     ],
                                   ),
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Container(
                                           decoration: BoxDecoration(
@@ -59,14 +62,15 @@ class ViewOrder extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       Dimensions.radius20 / 4)),
-                                          child: Container(
-                                            margin: EdgeInsets.all(
-                                                Dimensions.height10 / 2),
-                                            child: Text(
-                                              "${orderList[index].orderStatus}",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: Dimensions.width10,
+                                              vertical: Dimensions.width10 / 2),
+                                          child: Text(
+                                            "${orderList[index].orderStatus}",
+                                            style: robotoMedium.copyWith(
+                                              fontSize: Dimensions.font12,
+                                              color:
+                                                  Theme.of(context).cardColor,
                                             ),
                                           )),
                                       SizedBox(
@@ -75,6 +79,11 @@ class ViewOrder extends StatelessWidget {
                                       InkWell(
                                           onTap: () => null,
                                           child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      Dimensions.width10,
+                                                  vertical:
+                                                      Dimensions.width10 / 2),
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
                                                 borderRadius:
@@ -86,10 +95,31 @@ class ViewOrder extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .primaryColor),
                                               ),
-                                              child: Container(
-                                                  margin: EdgeInsets.all(
-                                                      Dimensions.height10 / 2),
-                                                  child: Text("track order")))),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/image/tracking.png",
+                                                    height: 15,
+                                                    width: 15,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        Dimensions.width10 / 2,
+                                                  ),
+                                                  Text(
+                                                    "track order",
+                                                    style:
+                                                        robotoMedium.copyWith(
+                                                      fontSize:
+                                                          Dimensions.font12,
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ))),
                                     ],
                                   )
                                 ],
