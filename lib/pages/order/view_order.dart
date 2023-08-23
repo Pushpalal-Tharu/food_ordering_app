@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/base/custom_loader.dart';
 import 'package:food_ordering_app/controllers/order_controller.dart';
 import 'package:food_ordering_app/models/order_model.dart';
 import 'package:food_ordering_app/utils/colors.dart';
@@ -136,7 +137,7 @@ class ViewOrder extends StatelessWidget {
             );
           } else {
             return Center(
-              child: Text("Loading..."),
+              child: CustomLoader(),
             );
           }
         },

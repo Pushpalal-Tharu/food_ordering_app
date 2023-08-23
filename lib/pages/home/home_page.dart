@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/pages/account/account_page.dart';
+import 'package:food_ordering_app/pages/profile/profile_page.dart';
 import 'package:food_ordering_app/pages/home/main_food_page.dart';
 import 'package:food_ordering_app/pages/order/order_page.dart';
 import 'package:food_ordering_app/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import '../auth/sign_up_page.dart';
 import '../cart/cart_history.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       MainFoodPage(),
       OrderPage(),
       CartHistory(),
-      AccountPage(),
+      ProfilePage(),
     ];
   }
 
@@ -50,19 +49,19 @@ class _HomePageState extends State<HomePage> {
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.archivebox_fill),
-        title: ("Archieve"),
+        title: ("My Orders"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: Colors.amberAccent,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.cart_fill),
-        title: ("Cart"),
+        title: ("Cart History"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: Colors.amberAccent,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.person),
-        title: ("Me"),
+        title: ("Profile"),
         activeColorPrimary: AppColors.mainColor,
         inactiveColorPrimary: Colors.amberAccent,
       ),

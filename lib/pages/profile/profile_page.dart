@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/base/custom_app_bar.dart';
 import 'package:food_ordering_app/base/custom_loader.dart';
 import 'package:food_ordering_app/controllers/auth_controller.dart';
 import 'package:food_ordering_app/controllers/cart_controller.dart';
@@ -12,8 +13,8 @@ import 'package:food_ordering_app/widgets/app_icon.dart';
 import 'package:food_ordering_app/widgets/big_text.dart';
 import 'package:get/get.dart';
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +24,7 @@ class AccountPage extends StatelessWidget {
       print("User has logged in.");
     }
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppColors.mainColor,
-          title: BigText(
-            text: "Profile",
-            size: 24,
-            color: Colors.white,
-          ),
-        ),
+        appBar: CustomAppBar(title: "Profile"),
         body: GetBuilder<UserController>(builder: (userController) {
           return _userLoggedIn
               ? (userController.isLoading

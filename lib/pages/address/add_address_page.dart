@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/base/custom_app_bar.dart';
 import 'package:food_ordering_app/controllers/auth_controller.dart';
 import 'package:food_ordering_app/controllers/location_controller.dart';
 import 'package:food_ordering_app/controllers/user_controller.dart';
@@ -69,10 +70,7 @@ class _AddressPageState extends State<AddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Address page"),
-        backgroundColor: AppColors.mainColor,
-      ),
+      appBar: CustomAppBar(title: "Address Page"),
       body: GetBuilder<UserController>(
         builder: (userController) {
           if (userController.userModel != null &&
